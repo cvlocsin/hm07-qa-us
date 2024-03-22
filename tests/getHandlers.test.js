@@ -4,7 +4,7 @@ const config = require('../config');
 test('status code should be 200', async () => {
 	let actualStatusCode;
 	try {
-		const response = await fetch(`${config.API_URL}/api/v1/kits/search?name=For movies and series`);
+		const response = await fetch(`${config.API_URL}/api/v1/kits/search?name=project7_modifiedKit`);
 		actualStatusCode = response.status;
 	} catch (error) {
 		console.error(error);
@@ -13,13 +13,13 @@ test('status code should be 200', async () => {
 });
 
 
-test('response body should contain a kit by the name of "For movies and series"', async () => {
+test('response body should contain a kit by the name of "project7_modifiedKit"', async () => {
 	let actualResponseBody;
 	try {
-		const response = await fetch(`${config.API_URL}/api/v1/kits/search?name=For movies and series`);
+		const response = await fetch(`${config.API_URL}/api/v1/kits/search?name=project7_modifiedKit`);
 		actualResponseBody = await response.json();
 	} catch (error) {
 		console.error(error);
 	}
-	expect(actualResponseBody.name).toBe('For movies and series');
+	expect(actualResponseBody.name).toBe("project7_modifiedKit");
 });

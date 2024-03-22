@@ -2,26 +2,14 @@
 const config = require('../config');
 
 const requestBody = {
-    "productsList": [
-        {
-            "id": 1,
-            "quantity": 2
-        },
-        {
-            "id": 5,
-            "quantity": 2
-        },
-        {
-            "id": 3,
-            "quantity": 1
-        }
-    ]
+    "cardId":2,
+    "name":"projectSeven"
 }
 
 test('status code should be 201', async () => {
 	let actualStatusCode;
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/orders`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits?cardId=2&name=projectSeven`, {
 			method: 'POST',
 			headers: {
 			'Content-Type': 'application/json'
@@ -37,10 +25,10 @@ test('status code should be 201', async () => {
 });
 
 
-test('response body should contain the warehouse "Fresh Food"', async () => {
+test('response body should contain the kit name "projectSeven', async () => {
 	let actualResponseBody;
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/orders`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits?cardId=2&name=projectSeven`, {
 			method: 'POST', 
 			headers: {
 			'Content-Type': 'application/json'
@@ -52,5 +40,5 @@ test('response body should contain the warehouse "Fresh Food"', async () => {
 		console.error(error);
 	}
 
-	expect(actualResponseBody.wareHouse).toBe("Fresh Food");
+	expect(actualResponseBody.name).toBe("projectSeven");
 });

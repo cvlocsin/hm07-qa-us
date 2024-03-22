@@ -1,12 +1,32 @@
 // eslint-disable-next-line no-undef
 const config = require('../config');
 
-const requestBody = {}
+const requestBody = {
+    "name": "project7_modifiedKit",
+    "productsList": [
+        {
+            "id": 1,
+            "quantity": 4
+        },
+        {
+            "id": 5,
+            "quantity": 2
+        },
+        {
+            "id": 3,
+            "quantity": 1
+        },
+        {
+            "id": 4,
+            "quantity": 1
+        }
+    ]
+}
 
 test('status code should be 200', async () => {
 	let actualStatusCode;
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/orders/2`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
 			method: 'PUT',
 			headers: {
 			'Content-Type': 'application/json'
@@ -22,10 +42,10 @@ test('status code should be 200', async () => {
 });
 
 
-test('response body should contain the final cost of 20', async () => {
+test('response body should contain confirmation that change has been made', async () => {
 	let actualResponseBody;
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/orders/2`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
 			method: 'PUT',
 			headers: {
 			'Content-Type': 'application/json'
@@ -37,6 +57,6 @@ test('response body should contain the final cost of 20', async () => {
 		console.error(error);
 	}
 
-	expect(actualResponseBody.finalCost).toBe(20);
+	expect(actualResponseBody.ok).toBe(true);
 });
 
